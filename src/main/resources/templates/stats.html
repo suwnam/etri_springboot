@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head><title>Jenkins 통계</title></head>
+<body>
+<h2>🟢 성공: [[${successCount}]] | 🔴 실패: [[${failureCount}]]</h2>
+<table border="1">
+    <tr><th>Job</th><th>Status</th><th>Duration(ms)</th><th>Timestamp</th></tr>
+    <tr th:each="stat : ${stats}">
+        <td th:text="${stat.jobName}">Job</td>
+        <td th:text="${stat.status}">Status</td>
+        <td th:text="${stat.duration}">Duration</td>
+        <td th:text="${stat.timestamp}">Time</td>
+    </tr>
+</table>
+</body>
+</html>

@@ -1,25 +1,25 @@
 package com.example.dockerDemo.controller;
 
-import com.example.dockerDemo.entity.BuildResult;
-import com.example.dockerDemo.repository.BuildResultRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.example.dockerDemo.repository.BuildStatRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import java.util.List;
-
 @Controller
-public class BuildController {
+public class BuildStatController {
 
-    @Autowired
-    private BuildResultRepository repository;
+    private final BuildStatRepository repo;
 
-    @GetMapping("/stats")
-    public String showBuildResults(Model model) {
-        List<BuildResult> results = repository.findAll();
-        model.addAttribute("builds", results);
-        return "builds";  // templates/builds.html 렌더링
+    public BuildStatController(BuildStatRepository repo) {
+        this.repo = repo;
+    }
+
+    @GetMapping("/")
+    public String showStats(Model model) {
+        model.addAttribute("stats", repo.findAll());
+        model.addAttribute("successCount", repo.countSuccess());
+        model.addAttribute("failureCount", repo.countFailure());
+        return "stats";
     }
 }
 
