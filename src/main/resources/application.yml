@@ -9,4 +9,4 @@ spring:
     show-sql: ${SPRING_JPA_SHOW-SQL}
     properties:
       hibernate:
-        format_sql: ${SPIRNG_JPA_FORMAT-SQL}
+        format_sql: ${SPRING_JPA_FORMAT-SQL}
