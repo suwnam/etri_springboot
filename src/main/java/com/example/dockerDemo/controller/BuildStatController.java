@@ -14,7 +14,7 @@ public class BuildStatController {
         this.repo = repo;
     }
 
-    @GetMapping("/")
+    @GetMapping("/builds")
     public String showStats(Model model) {
         model.addAttribute("stats", repo.findAll());
         model.addAttribute("successCount", repo.countSuccess());

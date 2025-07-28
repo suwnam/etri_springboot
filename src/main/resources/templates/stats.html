@@ -1,16 +1,50 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head><title>Jenkins 통계</title></head>
+<head>
+    <meta charset="UTF-8">
+    <title>Jenkins Build Statistics</title>
+    <style>
+        body { font-family: sans-serif; margin: 2em; }
+        h1 { color: #333; }
+        table { border-collapse: collapse; width: 100%; margin-top: 1em; }
+        th, td { padding: 0.5em; border: 1px solid #ccc; text-align: left; }
+        th { background-color: #f2f2f2; }
+        .summary { margin: 1em 0; }
+        .no-data { color: #888; font-style: italic; padding: 1em 0; }
+    </style>
+</head>
 <body>
-<h2>🟢 성공: [[${successCount}]] | 🔴 실패: [[${failureCount}]]</h2>
-<table border="1">
-    <tr><th>Job</th><th>Status</th><th>Duration(ms)</th><th>Timestamp</th></tr>
-    <tr th:each="stat : ${stats}">
-        <td th:text="${stat.jobName}">Job</td>
-        <td th:text="${stat.status}">Status</td>
-        <td th:text="${stat.duration}">Duration</td>
-        <td th:text="${stat.timestamp}">Time</td>
-    </tr>
-</table>
+    <h1>Jenkins Build Statistics</h1>
+
+    <div class="summary">
+        <p><strong>Success Count:</strong> <span th:text="${successCount}">0</span></p>
+        <p><strong>Failure Count:</strong> <span th:text="${failureCount}">0</span></p>
+    </div>
+
+    <div th:if="${#lists.isEmpty(stats)}" class="no-data">
+        📭 아직 등록된 빌드 결과가 없습니다.
+    </div>
+
+    <table th:if="${!#lists.isEmpty(stats)}">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Job Name</th>
+                <th>Status</th>
+                <th>Duration (ms)</th>
+                <th>Timestamp</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="stat : ${stats}">
+                <td th:text="${stat.id}">1</td>
+                <td th:text="${stat.jobName}">web-test</td>
+                <td th:text="${stat.status}">SUCCESS</td>
+                <td th:text="${stat.duration}">1234</td>
+                <td th:text="${#dates.format(stat.timestamp, 'yyyy-MM-dd HH:mm:ss')}">2025-07-28 10:00:00</td>
+            </tr>
+        </tbody>
+    </table>
 </body>
 </html>
+
