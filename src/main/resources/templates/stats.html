@@ -2,27 +2,45 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Jenkins Build Statistics</title>
+    <title>Build Statistics</title>
     <style>
-        body { font-family: sans-serif; margin: 2em; }
-        h1 { color: #333; }
-        table { border-collapse: collapse; width: 100%; margin-top: 1em; }
-        th, td { padding: 0.5em; border: 1px solid #ccc; text-align: left; }
-        th { background-color: #f2f2f2; }
-        .summary { margin: 1em 0; }
-        .no-data { color: #888; font-style: italic; padding: 1em 0; }
+        body {
+            font-family: sans-serif;
+            margin: 2rem;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 0.6rem;
+            text-align: center;
+        }
+        th {
+            background-color: #f0f0f0;
+        }
+        .summary {
+            margin-top: 1.5rem;
+        }
+        .no-data {
+            color: #999;
+            margin-top: 2rem;
+            font-style: italic;
+        }
     </style>
 </head>
 <body>
-    <h1>Jenkins Build Statistics</h1>
+    <h1>Jenkins Build 통계</h1>
 
     <div class="summary">
-        <p><strong>Success Count:</strong> <span th:text="${successCount}">0</span></p>
-        <p><strong>Failure Count:</strong> <span th:text="${failureCount}">0</span></p>
+        <p><strong>성공한 빌드:</strong> <span th:text="${successCount}"></span></p>
+        <p><strong>실패한 빌드:</strong> <span th:text="${failureCount}"></span></p>
     </div>
 
-    <div th:if="${#lists.isEmpty(stats)}" class="no-data">
-        📭 아직 등록된 빌드 결과가 없습니다.
+    <div th:if="${#lists.isEmpty(stats)}">
+        <p class="no-data">데이터가 존재하지 않습니다.</p>
     </div>
 
     <table th:if="${!#lists.isEmpty(stats)}">
@@ -37,11 +55,11 @@
         </thead>
         <tbody>
             <tr th:each="stat : ${stats}">
-                <td th:text="${stat.id}">1</td>
-                <td th:text="${stat.jobName}">web-test</td>
-                <td th:text="${stat.status}">SUCCESS</td>
-                <td th:text="${stat.duration}">1234</td>
-                <td th:text="${#dates.format(stat.timestamp, 'yyyy-MM-dd HH:mm:ss')}">2025-07-28 10:00:00</td>
+                <td th:text="${stat.id}"></td>
+                <td th:text="${stat.jobName}"></td>
+                <td th:text="${stat.status}"></td>
+                <td th:text="${stat.duration}"></td>
+                <td th:text="${#temporals.format(stat.timestamp, 'yyyy-MM-dd HH:mm:ss')}"></td>
             </tr>
         </tbody>
     </table>

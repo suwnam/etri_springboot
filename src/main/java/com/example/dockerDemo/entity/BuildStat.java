@@ -17,6 +17,24 @@ public class BuildStat {
     @Column(columnDefinition = "TIMESTAMP")
     private LocalDateTime timestamp;
 
-    // Getters/Setters 생략 가능 (Lombok 사용 가능)
+    public Long getId() {
+        return id;
+    }
+
+    public String getJobName() {
+        return jobName;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public Long getDuration() {
+        return duration;
+    }
+
+    public LocalDateTime getTimestamp() {
+        return timestamp;
+    }
 }
 
