@@ -29,39 +29,46 @@
 	<properties>
 		<java.version>21</java.version>
 	</properties>
+
 	<dependencies>
-                <!-- Web -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
-		</dependency>
+    		<!-- Spring Boot Web -->
+	    	<dependency>
+        		<groupId>org.springframework.boot</groupId>
+        		<artifactId>spring-boot-starter-web</artifactId>
+    		</dependency>
 
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
-		</dependency>
+		<!-- Spring Data JPA -->
+    		<dependency>
+        		<groupId>org.springframework.boot</groupId>
+        		<artifactId>spring-boot-starter-data-jpa</artifactId>
+    		</dependency>
 
-		<!-- PostgreSQL -->
-                <dependency>
-                        <groupId>org.postgresql</groupId>
-                        <artifactId>postgresql</artifactId>
-                </dependency>
+    		<!-- PostgreSQL JDBC Driver -->
+    		<dependency>
+        		<groupId>org.postgresql</groupId>
+        		<artifactId>postgresql</artifactId>
+        		<version>42.7.1</version>
+	    	</dependency>
 
-                <!-- JPA -->
-                <dependency>
-                        <groupId>org.springframework.boot</groupId>
-                        <artifactId>spring-boot-starter-data-jpa</artifactId>
-                </dependency>
-		
-		<!-- html -->
-		<dependency>
+    		<!-- Thymeleaf Template Engine -->
+    		<dependency>
         		<groupId>org.springframework.boot</groupId>
         		<artifactId>spring-boot-starter-thymeleaf</artifactId>
     		</dependency>
-</dependencies>
 
+    		<!-- Optional: Lombok (자동 생성자 등) -->
+    		<dependency>
+        		<groupId>org.projectlombok</groupId>
+        		<artifactId>lombok</artifactId>
+        		<optional>true</optional>
+    		</dependency>
 
+    		<!-- 테스트 -->
+   	 	<dependency>
+        		<groupId>org.springframework.boot</groupId>
+        		<artifactId>spring-boot-starter-test</artifactId>
+        		<scope>test</scope>
+ 	   	</dependency>
 	</dependencies>
 
 	<build>
