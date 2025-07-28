@@ -1,12 +1,12 @@
 spring:
   datasource:
-    url: ${SPRING_DATASOURCE_URL}
-    username: ${SPRING_DATASOURCE_USERNAME}
-    password: ${SPRING_DATASOURCE_PASSWORD}
+    url: jdbc:postgresql://postgres:5432/jenkins_stats
+    username: jenkins
+    password: jenkins123
   jpa:
     hibernate:
-      ddl-auto: ${SPRING_JPA_HIBERNATE_DDL-AUTO}
-    show-sql: ${SPRING_JPA_SHOW-SQL}
+      ddl-auto: update #자동 테이블 생성 옵션
+    show-sql: true #SQL 로그 보기
     properties:
       hibernate:
-        format_sql: ${SPRING_JPA_FORMAT-SQL}
+        format_sql: true #SQL 로그 보기
